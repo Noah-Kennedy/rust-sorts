@@ -14,5 +14,5 @@ RUSTFLAGS="-Cprofile-generate=/tmp/pgo-data" \
 llvm-profdata merge -o /tmp/pgo-data/merged.profdata /tmp/pgo-data
 
 # STEP 4: Use the `.profdata` file for guiding optimizations
-RUSTFLAGS="-Cprofile-use=/tmp/pgo-data/merged.profdata" \
+RUSTFLAGS="-Cprofile-use=/tmp/pgo-data/merged.profdata -Cllvm-args=-pgo-warn-missing-function" \
     cargo build --release --target=x86_64-unknown-linux-gnu --features=benchmarking

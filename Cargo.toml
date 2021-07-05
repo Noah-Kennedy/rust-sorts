@@ -50,23 +50,6 @@ quickcheck_macros = "^1.0"
 ###################################################################################################
 # BINARIES
 ###################################################################################################
-
-[[bin]]
-name = "bench_all_str"
-required-features = ["benchmarking"]
-
-[[bin]]
-name = "shakespeare"
-required-features = ["benchmarking"]
-
 [[bin]]
 name = "all-languages"
-required-features = ["benchmarking"]
-
-[[bin]]
-name = "arabic"
-required-features = ["benchmarking"]
-
-[[bin]]
-name = "english"
 required-features = ["benchmarking"]
