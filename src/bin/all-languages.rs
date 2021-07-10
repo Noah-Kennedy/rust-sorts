@@ -12,11 +12,11 @@ static GLOBAL: Jemalloc = Jemalloc;
 
 fn main() {
     let arabic_join = thread::spawn(
-        || read_file("data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt")
+        || read_file("data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt", true)
     );
 
     let english_join = thread::spawn(
-        || read_file("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt")
+        || read_file("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", true)
     );
 
     let arabic = arabic_join.join().unwrap();

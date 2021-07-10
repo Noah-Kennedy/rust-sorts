@@ -46,6 +46,7 @@ optional = true
 [dev-dependencies]
 quickcheck = "^1.0"
 quickcheck_macros = "^1.0"
+criterion = "^0.3"
 
 ###################################################################################################
 # BINARIES
@@ -53,3 +54,8 @@ quickcheck_macros = "^1.0"
 [[bin]]
 name = "all-languages"
 required-features = ["benchmarking"]
+
+[[bench]]
+name = "all-languages-bench"
+required-features = ["benchmarking"]
+harness = false

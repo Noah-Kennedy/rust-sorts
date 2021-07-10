@@ -4,7 +4,7 @@ use rand::distributions::{Alphanumeric, Distribution, Uniform};
 use rand::distributions::uniform::SampleUniform;
 use unicode_segmentation::UnicodeSegmentation;
 
-pub fn read_file(file: &str) -> Vec<String> {
+pub fn read_file(file: &str, printing: bool) -> Vec<String> {
     let timer = Instant::now();
     let text = std::fs::read_to_string(file).unwrap();
     let words = text.unicode_words();
@@ -12,7 +12,10 @@ pub fn read_file(file: &str) -> Vec<String> {
     let data = words.map(ToOwned::to_owned).collect();
 
     let time = timer.elapsed().as_secs_f64();
-    println!("{}:\t{:.3} seconds", file, time);
+    
+    if printing {
+        println!("{}:\t{:.3} seconds", file, time);
+    }
 
     data
 }
