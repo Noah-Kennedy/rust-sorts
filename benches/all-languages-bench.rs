@@ -4,6 +4,7 @@ use tcmalloc::TCMalloc;
 
 use sorting::benchmarking::read_file;
 use sorting::string::{tabular_burst_sort, dynamic_burst_sort};
+use std::time::Duration;
 
 #[global_allocator]
 static GLOBAL: TCMalloc = TCMalloc;
@@ -22,6 +23,7 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     let mut group = c.benchmark_group(param);
 
     group.sample_size(32);
+    group.warm_up_time(Duration::from_secs(20));
 
     group.bench_function(
         "burst-dynamic",

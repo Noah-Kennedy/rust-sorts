@@ -23,13 +23,9 @@ impl TrieNode {
     }
 
     pub fn insert(&mut self, s: String) {
-        if self.offset == s.chars().count() {
-            self.matches.push(s);
-        } else {
+        if let Some(c) = s.chars().nth(self.offset) {
             match &mut self.kind {
                 NodeKind::Burst(children) => {
-                    let c = s.chars().nth(self.offset).unwrap();
-
                     match children.binary_search_by_key(&c, |x| x.0) {
                         Ok(idx) => {
                             children[idx].1.insert(s);
@@ -66,6 +62,8 @@ impl TrieNode {
                     }
                 }
             }
+        } else {
+            self.matches.push(s);
         }
     }
 
