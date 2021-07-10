@@ -1,7 +1,17 @@
-use crate::burst_trie::TrieNode;
+use crate::burst_trie;
 
-pub fn burst_sort(data: &mut Vec<String>) {
-    let mut trie = TrieNode::new(0);
+pub fn tabular_burst_sort(data: &mut Vec<String>) {
+    let mut trie = burst_trie::tabular::TrieNode::new(0);
+
+    while let Some(s) = data.pop() {
+        trie.insert(s);
+    }
+
+    trie.merge(data);
+}
+
+pub fn dynamic_burst_sort(data: &mut Vec<String>) {
+    let mut trie = burst_trie::dynamic::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
         trie.insert(s);
@@ -15,12 +25,44 @@ mod tests {
     use super::*;
 
     #[quickcheck]
-    fn unstable_sort_equivalence(data: Vec<String>) {
+    fn check_tabular(data: Vec<String>) {
         let mut expected = data.clone();
         let mut actual = data;
 
         expected.sort_unstable();
-        burst_sort(&mut actual);
+        tabular_burst_sort(&mut actual);
+
+        assert_eq!(expected, actual)
+    }
+
+    #[quickcheck]
+    fn check_dynamic(data: Vec<String>) {
+        let mut expected = data.clone();
+        let mut actual = data;
+
+        expected.sort_unstable();
+        dynamic_burst_sort(&mut actual);
+
+        assert_eq!(expected, actual)
+    }
+
+    #[test]
+    fn simple_dynamic() {
+        let data = vec![
+            "cat".to_string(),
+            "apple".to_string(),
+            "jackal".to_string(),
+            "silver".to_string(),
+            "bat".to_string(),
+            "applesauce".to_string(),
+            "ostritch".to_string(),
+        ];
+
+        let mut expected = data.clone();
+        let mut actual = data;
+
+        expected.sort_unstable();
+        dynamic_burst_sort(&mut actual);
 
         assert_eq!(expected, actual)
     }
