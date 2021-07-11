@@ -31,12 +31,12 @@ fn random_medium(c: &mut Criterion) {
 }
 
 fn random_long(c: &mut Criterion) {
-    let text = get_random_str(1_000_000, 64, 256);
+    let text = get_random_str(10_000_000, 64, 256);
     bench_with_text(c, "random-long", text);
 }
 
 fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
-    println!("{}: {}", param, text.len());
+    println!("{}:\n\t{}", param, text.len());
 
     let mut group = c.benchmark_group(param);
 
