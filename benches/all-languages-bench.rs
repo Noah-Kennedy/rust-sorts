@@ -1,10 +1,11 @@
+use std::time::Duration;
+
 use criterion::{criterion_group, criterion_main};
 use criterion::Criterion;
 use tcmalloc::TCMalloc;
 
-use sorting::benchmarking::read_file;
-use sorting::string::{tabular_burst_sort, dynamic_burst_sort};
-use std::time::Duration;
+use sorting::benchmarking::{get_random_str, read_file};
+use sorting::string::{dynamic_burst_sort, tabular_burst_sort};
 
 #[global_allocator]
 static GLOBAL: TCMalloc = TCMalloc;
@@ -17,6 +18,21 @@ fn english(c: &mut Criterion) {
 fn arabic(c: &mut Criterion) {
     let text = read_file("data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt", false);
     bench_with_text(c, "arabic", text);
+}
+
+fn random_short(c: &mut Criterion) {
+    let text = get_random_str(10_000_000, 1, 8);
+    bench_with_text(c, "random-short", text);
+}
+
+fn random_medium(c: &mut Criterion) {
+    let text = get_random_str(10_000_000, 16, 32);
+    bench_with_text(c, "random-medium", text);
+}
+
+fn random_long(c: &mut Criterion) {
+    let text = get_random_str(1_000_000, 64, 256);
+    bench_with_text(c, "random-long", text);
 }
 
 fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
@@ -56,5 +72,5 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     );
 }
 
-criterion_group!(benches, english, arabic);
+criterion_group!(benches, english, arabic, random_short, random_medium, random_long);
 criterion_main!(benches);

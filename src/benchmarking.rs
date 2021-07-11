@@ -38,12 +38,7 @@ pub fn get_random_ranges<T>(length: usize, samples: usize, low: T, high: T) -> V
     sample_set
 }
 
-pub fn get_random_str(length: usize, samples: usize, min_length: usize, max_length: usize)
-                      -> Vec<Vec<String>>
-{
-    let mut sample_set = Vec::with_capacity(samples);
-
-    for _ in 0..samples {
+pub fn get_random_str(length: usize, min_length: usize, max_length: usize) -> Vec<String> {
         let mut elements = Vec::with_capacity(length);
 
         let length_dist = Uniform::new_inclusive(min_length, max_length);
@@ -59,10 +54,7 @@ pub fn get_random_str(length: usize, samples: usize, min_length: usize, max_leng
             elements.push(item)
         }
 
-        sample_set.push(elements);
-    }
-
-    sample_set
+        elements
 }
 
 
