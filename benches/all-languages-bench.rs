@@ -20,6 +20,8 @@ fn arabic(c: &mut Criterion) {
 }
 
 fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
+    println!("{}: {}", param, text.len());
+
     let mut group = c.benchmark_group(param);
 
     group.sample_size(32);

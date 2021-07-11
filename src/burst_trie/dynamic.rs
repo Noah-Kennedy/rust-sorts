@@ -72,7 +72,7 @@ impl TrieNode {
 
         match self.kind {
             NodeKind::Collapsed(mut children) => {
-                children.sort();
+                children.sort_unstable();
                 target.append(&mut children);
             }
             NodeKind::Burst(children) => {

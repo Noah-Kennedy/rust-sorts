@@ -71,7 +71,7 @@ impl BucketNode {
     }
 
     pub fn merge(mut self, target: &mut Vec<String>, offset: usize) {
-        self.bucket.sort_by(|l, r| {
+        self.bucket.sort_unstable_by(|l, r| {
             l.as_bytes()[offset..].cmp(&r.as_bytes()[offset..])
         });
         target.append(&mut self.bucket)
