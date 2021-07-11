@@ -1,5 +1,3 @@
-use std::option::Option::Some;
-
 const BURST_LIMIT: usize = 8192;
 
 pub struct TrieNode {
@@ -44,16 +42,16 @@ impl TrieNode {
                         let mut new_children: Vec<(char, TrieNode)> = Vec::new();
 
                         while let Some(child) = children.pop() {
-                            let c = child.chars().nth(self.offset).unwrap();
+                            let k = child.chars().nth(self.offset).unwrap();
 
-                            match new_children.binary_search_by_key(&c, |x| x.0) {
+                            match new_children.binary_search_by_key(&k, |x| x.0) {
                                 Ok(idx) => {
                                     new_children[idx].1.insert(child);
                                 }
                                 Err(idx) => {
                                     let mut new_node = TrieNode::new(self.offset + 1);
                                     new_node.insert(child);
-                                    new_children.insert(idx, (c, new_node));
+                                    new_children.insert(idx, (k, new_node));
                                 }
                             }
                         }
