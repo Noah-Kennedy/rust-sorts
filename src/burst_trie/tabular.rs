@@ -43,8 +43,8 @@ impl TrieNode {
         }
     }
 
-    pub fn merge(self, target: &mut Vec<String>) {
-        match self.data {
+    pub fn merge(&mut self, target: &mut Vec<String>) {
+        match &mut self.data {
             NodeKind::Bucket(bucket) => bucket.merge(target, self.offset),
             NodeKind::Table(table) => table.merge(target),
         }
@@ -70,7 +70,7 @@ impl BucketNode {
         table
     }
 
-    pub fn merge(mut self, target: &mut Vec<String>, offset: usize) {
+    pub fn merge(&mut self, target: &mut Vec<String>, offset: usize) {
         self.bucket.sort_unstable_by(|l, r| {
             l.as_bytes()[offset..].cmp(&r.as_bytes()[offset..])
         });
@@ -99,10 +99,10 @@ impl TableNode {
         }
     }
 
-    pub fn merge(mut self, target: &mut Vec<String>) {
+    pub fn merge(&mut self, target: &mut Vec<String>) {
         target.append(&mut self.matches);
 
-        for entry in self.table {
+        for entry in self.table.iter_mut() {
             entry.merge(target)
         }
     }
