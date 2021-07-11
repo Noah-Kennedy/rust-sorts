@@ -3,4 +3,3 @@ Cargo.lock
 /data
 
 !/target/criterion/
-!/target/criterion/**/*
