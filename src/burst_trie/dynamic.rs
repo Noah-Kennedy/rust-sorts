@@ -38,30 +38,38 @@ impl TrieNode {
                 NodeKind::Collapsed(children) => {
                     children.push(s);
 
-                    if children.len() > BURST_LIMIT {
-                        let mut new_children: Vec<(char, TrieNode)> = Vec::new();
-
-                        while let Some(child) = children.pop() {
-                            let k = child.chars().nth(self.offset).unwrap();
-
-                            match new_children.binary_search_by_key(&k, |x| x.0) {
-                                Ok(idx) => {
-                                    new_children[idx].1.insert(child);
-                                }
-                                Err(idx) => {
-                                    let mut new_node = TrieNode::new(self.offset + 1);
-                                    new_node.insert(child);
-                                    new_children.insert(idx, (k, new_node));
-                                }
-                            }
-                        }
-
-                        self.kind = NodeKind::Burst(new_children);
+                    if children.len() >= BURST_LIMIT {
+                        self.burst()
                     }
                 }
             }
         } else {
             self.matches.push(s);
+        }
+    }
+
+    fn burst(&mut self) {
+        if let NodeKind::Collapsed(children) = &mut self.kind {
+            let mut new_children: Vec<(char, TrieNode)> = Vec::new();
+
+            while let Some(child) = children.pop() {
+                let k = child.chars().nth(self.offset).unwrap();
+
+                match new_children.binary_search_by_key(&k, |x| x.0) {
+                    Ok(idx) => {
+                        new_children[idx].1.insert(child);
+                    }
+                    Err(idx) => {
+                        let mut new_node = TrieNode::new(self.offset + 1);
+                        new_node.insert(child);
+                        new_children.insert(idx, (k, new_node));
+                    }
+                }
+            }
+
+            self.kind = NodeKind::Burst(new_children);
+        } else {
+            unreachable!()
         }
     }
 
