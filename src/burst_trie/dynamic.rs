@@ -24,16 +24,7 @@ impl TrieNode {
         if let Some(c) = s.chars().nth(self.offset) {
             match &mut self.kind {
                 NodeKind::Burst(children) => {
-                    match children.binary_search_by_key(&c, |x| x.0) {
-                        Ok(idx) => {
-                            children[idx].1.insert(s);
-                        }
-                        Err(idx) => {
-                            let mut new_node = TrieNode::new(self.offset + 1);
-                            new_node.insert(s);
-                            children.insert(idx, (c, new_node));
-                        }
-                    }
+                    add_to_burst_node(children, s, c, self.offset);
                 }
                 NodeKind::Collapsed(children) => {
                     children.push(s);
@@ -54,17 +45,7 @@ impl TrieNode {
 
             while let Some(child) = children.pop() {
                 let k = child.chars().nth(self.offset).unwrap();
-
-                match new_children.binary_search_by_key(&k, |x| x.0) {
-                    Ok(idx) => {
-                        new_children[idx].1.insert(child);
-                    }
-                    Err(idx) => {
-                        let mut new_node = TrieNode::new(self.offset + 1);
-                        new_node.insert(child);
-                        new_children.insert(idx, (k, new_node));
-                    }
-                }
+                add_to_burst_node(&mut new_children, child, k, self.offset)
             }
 
             self.kind = NodeKind::Burst(new_children);
@@ -86,6 +67,20 @@ impl TrieNode {
                     child.merge(target)
                 }
             }
+        }
+    }
+}
+
+#[inline(always)]
+fn add_to_burst_node(children: &mut Vec<(char, TrieNode)>, s: String, c: char, offset: usize) {
+    match children.binary_search_by_key(&c, |x| x.0) {
+        Ok(idx) => {
+            children[idx].1.insert(s);
+        }
+        Err(idx) => {
+            let mut new_node = TrieNode::new(offset + 1);
+            new_node.insert(s);
+            children.insert(idx, (c, new_node));
         }
     }
 }
