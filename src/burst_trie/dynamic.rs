@@ -54,16 +54,16 @@ impl TrieNode {
         }
     }
 
-    pub fn merge(mut self, target: &mut Vec<String>) {
+    pub fn merge(&mut self, target: &mut Vec<String>) {
         target.append(&mut self.matches);
 
-        match self.kind {
-            NodeKind::Collapsed(mut children) => {
+        match &mut self.kind {
+            NodeKind::Collapsed(children) => {
                 children.sort_unstable();
-                target.append(&mut children);
+                target.append(children);
             }
             NodeKind::Burst(children) => {
-                for (_, child) in children {
+                for (_, child) in children.iter_mut() {
                     child.merge(target)
                 }
             }
