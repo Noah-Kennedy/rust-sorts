@@ -1,7 +1,5 @@
-use crate::burst_trie;
-
 pub fn tabular_burst_sort(data: &mut Vec<String>) {
-    let mut trie = burst_trie::tabular::TrieNode::new(0);
+    let mut trie = crate::tabular::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
         trie.insert(s);
@@ -11,7 +9,7 @@ pub fn tabular_burst_sort(data: &mut Vec<String>) {
 }
 
 pub fn dynamic_burst_sort(data: &mut Vec<String>) {
-    let mut trie = burst_trie::dynamic::TrieNode::new(0);
+    let mut trie = crate::dynamic::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
         trie.insert(s);

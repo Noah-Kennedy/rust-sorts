@@ -1,5 +1,6 @@
 use std::time::Instant;
 
+use criterion::black_box;
 use rand::distributions::{Alphanumeric, Distribution, Uniform};
 use rand::distributions::uniform::SampleUniform;
 use unicode_segmentation::UnicodeSegmentation;
@@ -12,7 +13,7 @@ pub fn read_file(file: &str, printing: bool) -> Vec<String> {
     let data = words.map(ToOwned::to_owned).collect();
 
     let time = timer.elapsed().as_secs_f64();
-    
+
     if printing {
         println!("{}:\t{:.3} seconds", file, time);
     }
@@ -39,22 +40,22 @@ pub fn get_random_ranges<T>(length: usize, samples: usize, low: T, high: T) -> V
 }
 
 pub fn get_random_str(length: usize, min_length: usize, max_length: usize) -> Vec<String> {
-        let mut elements = Vec::with_capacity(length);
+    let mut elements = Vec::with_capacity(length);
 
-        let length_dist = Uniform::new_inclusive(min_length, max_length);
+    let length_dist = Uniform::new_inclusive(min_length, max_length);
 
-        let mut lengths = length_dist.sample_iter(rand::thread_rng());
+    let mut lengths = length_dist.sample_iter(rand::thread_rng());
 
-        for _ in 0..length {
-            let str_length = lengths.next().unwrap();
+    for _ in 0..length {
+        let str_length = lengths.next().unwrap();
 
-            let rng = rand::thread_rng();
-            let sample_iterator = Alphanumeric.sample_iter(rng);
-            let item = sample_iterator.take(str_length).map(char::from).collect();
-            elements.push(item)
-        }
+        let rng = rand::thread_rng();
+        let sample_iterator = Alphanumeric.sample_iter(rng);
+        let item = sample_iterator.take(str_length).map(char::from).collect();
+        elements.push(item)
+    }
 
-        elements
+    elements
 }
 
 
@@ -65,7 +66,7 @@ pub fn bench_sort<T>(name: &str, sort: fn(&mut Vec<T>), mut samples: Vec<Vec<T>>
         sort(s);
     }
 
-    // black_box(&samples);
+    black_box(&samples);
 
     let time = timer.elapsed().as_secs_f64() / samples.len() as f64;
 

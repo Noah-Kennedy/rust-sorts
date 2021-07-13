@@ -4,8 +4,8 @@ use criterion::{criterion_group, criterion_main};
 use criterion::Criterion;
 use tcmalloc::TCMalloc;
 
-use sorting::benchmarking::{get_random_str, read_file};
-use sorting::string::{dynamic_burst_sort, tabular_burst_sort};
+use benchmarking::{get_random_str, read_file};
+use burstsort::string::{dynamic_burst_sort, tabular_burst_sort};
 
 #[global_allocator]
 static GLOBAL: TCMalloc = TCMalloc;
