@@ -1,5 +1,5 @@
 [package]
-name = "benchmarking"
+name = "internal-benchmarking"
 version = "0.1.0"
 edition = "2018"
 
@@ -27,6 +27,9 @@ tcmalloc = "^0.3"
 # BENCHES
 ###################################################################################################
 [[bench]]
-name = "burstsort-bench"
-required-features = ["benchmarking"]
+name = "burstsort-realistic"
+harness = false
+
+[[bench]]
+name = "burstsort-alphanumeric"
 harness = false

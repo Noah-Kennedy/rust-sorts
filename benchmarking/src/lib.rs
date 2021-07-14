@@ -21,6 +21,25 @@ pub fn read_file(file: &str, printing: bool) -> Vec<String> {
     data
 }
 
+pub fn read_file_alpha(file: &str, printing: bool) -> Vec<String> {
+    let timer = Instant::now();
+    let text = std::fs::read_to_string(file).unwrap();
+    let words = text.unicode_words();
+
+    let data = words
+        .filter(|s| s.as_bytes().iter().all(|c| c.is_ascii_alphanumeric()))
+        .map(ToOwned::to_owned)
+        .collect();
+
+    let time = timer.elapsed().as_secs_f64();
+
+    if printing {
+        println!("{}:\t{:.3} seconds", file, time);
+    }
+
+    data
+}
+
 pub fn get_random_ranges<T>(length: usize, samples: usize, low: T, high: T) -> Vec<Vec<T>>
     where T: SampleUniform + Clone
 {
