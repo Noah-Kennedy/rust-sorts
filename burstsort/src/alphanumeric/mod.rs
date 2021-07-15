@@ -1,3 +1,7 @@
+use alpha_table::lookup_alpha_index;
+
+mod alpha_table;
+
 const ALPHANUMERIC_BURST_LIMIT: usize = 8192;
 
 pub fn make_trie() -> DynamicAlphaNumericNode {
@@ -6,7 +10,7 @@ pub fn make_trie() -> DynamicAlphaNumericNode {
 
 pub trait AlphaNumericTrieNode {
     fn insert(&mut self, s: String) -> Result<(), u8>;
-    fn insert_silent(&mut self, s: String);
+    fn insert_unchecked(&mut self, s: String);
     fn merge(&mut self, target: &mut Vec<String>);
 }
 
@@ -40,13 +44,13 @@ impl AlphaNumericTrieNode for DynamicAlphaNumericNode {
         }
     }
 
-    fn insert_silent(&mut self, s: String) {
+    fn insert_unchecked(&mut self, s: String) {
         match &mut self.kind {
             AlphaNumericNodeKind::Burst(inner) => {
-                inner.insert_silent(s)
+                inner.insert_unchecked(s)
             }
             AlphaNumericNodeKind::Collapsed(inner) => {
-                inner.insert_silent(s);
+                inner.insert_unchecked(s);
 
                 if inner.should_burst() {
                     self.kind = AlphaNumericNodeKind::Burst(inner.burst())
@@ -93,11 +97,9 @@ impl AlphaNumericTrieNode for CollapsedAlphaNumericNode {
         }
     }
 
-    fn insert_silent(&mut self, s: String) {
-        if let Some(&c) = s.as_bytes().get(self.offset) {
-            if c.is_ascii_alphanumeric() {
-                self.bucket.push(s);
-            }
+    fn insert_unchecked(&mut self, s: String) {
+        if s.len() > self.offset {
+            self.bucket.push(s);
         } else {
             self.matches.push(s);
         }
@@ -146,7 +148,7 @@ impl AlphaNumericTrieNode for BurstAlphaNumericNode {
     fn insert(&mut self, s: String) -> Result<(), u8> {
         if let Some(&c) = s.as_bytes().get(self.offset) {
             if c.is_ascii_alphanumeric() {
-                let index = to_alphanumeric_index(c) as usize;
+                let index = lookup_alpha_index(c) as usize;
 
                 self.children[index].insert(s)?;
 
@@ -161,13 +163,11 @@ impl AlphaNumericTrieNode for BurstAlphaNumericNode {
         }
     }
 
-    fn insert_silent(&mut self, s: String) {
+    fn insert_unchecked(&mut self, s: String) {
         if let Some(&c) = s.as_bytes().get(self.offset) {
-            if c.is_ascii_alphanumeric() {
-                let index = to_alphanumeric_index(c) as usize;
+            let index = lookup_alpha_index(c) as usize;
 
-                self.children[index].insert_silent(s);
-            }
+            self.children[index].insert_unchecked(s);
         } else {
             self.matches.push(s);
         }
@@ -194,40 +194,4 @@ impl BurstAlphaNumericNode {
             children,
         }
     }
-}
-
-const fn make_const_table() -> [u8; 62] {
-    let mut out = [0; 62];
-
-    let mut i = 0;
-
-    while i < out.len() as u8 {
-        if i.is_ascii_alphanumeric() {
-            out[i as usize] = compute_index(i);
-        }
-
-        i += 1;
-    }
-
-    out
-}
-
-#[inline(always)]
-const fn compute_index(c: u8) -> u8 {
-    if c < 65 {
-        // if digit, shift to 0-9
-        c - 48
-    } else if c < 97 {
-        // if uppercase, shift to 10-35
-        c - 65 + 9
-    } else {
-        // if lowercase, shift to 36-61
-        c - 97 + 9 + 26
-    }
-}
-
-#[inline(always)]
-const fn to_alphanumeric_index(c: u8) -> u8 {
-    const TABLE: [u8; 62] = make_const_table();
-    TABLE[c as usize]
 }

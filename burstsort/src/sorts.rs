@@ -36,7 +36,7 @@ pub fn alphanumeric_silent_sort(data: &mut Vec<String>) {
     let mut trie = crate::alphanumeric::make_trie();
 
     while let Some(s) = data.pop() {
-        trie.insert_silent(s);
+        trie.insert_unchecked(s);
     }
 
     trie.merge(data);
