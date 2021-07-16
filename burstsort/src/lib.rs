@@ -8,8 +8,8 @@ pub use sorts::*;
 
 mod sorts;
 
-mod dynamic;
-mod tabular;
+mod unicode;
+mod byte;
 mod alphanumeric;
 
 #[cfg(test)]

@@ -38,7 +38,7 @@ use crate::alphanumeric::AlphaNumericTrieNode;
 /// );
 /// ```
 pub fn byte_sort(data: &mut Vec<String>) {
-    let mut trie = crate::tabular::TrieNode::new(0);
+    let mut trie = crate::byte::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
         trie.insert(s);
@@ -62,7 +62,7 @@ pub fn byte_sort(data: &mut Vec<String>) {
 ///
 /// ```
 pub fn unicode_sort(data: &mut Vec<String>) {
-    let mut trie = crate::dynamic::TrieNode::new(0);
+    let mut trie = crate::unicode::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
         trie.insert(s);
