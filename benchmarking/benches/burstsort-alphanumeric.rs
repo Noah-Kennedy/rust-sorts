@@ -14,7 +14,7 @@ const LENGTH: usize = 10_000_000;
 
 fn english(c: &mut Criterion) {
     let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
-    bench_with_text(c, "alpha-english", text);
+    bench_with_text(c, "alphabetical-english", text);
 }
 
 fn random_short(c: &mut Criterion) {
@@ -41,42 +41,42 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     group.warm_up_time(Duration::from_secs(20));
 
     group.bench_function(
-        "burst-alphanumeric",
+        "alphanumeric-checked",
         |b| {
             b.iter(|| alphanumeric_sort(&mut text.clone()).unwrap());
         },
     );
 
     group.bench_function(
-        "alphanumeric-silent",
+        "alphanumeric-unchecked",
         |b| {
             b.iter(|| alphanumeric_unchecked_sort(&mut text.clone()));
         },
     );
 
     group.bench_function(
-        "burst-dynamic",
+        "unicode-sort",
         |b| {
             b.iter(|| unicode_sort(&mut text.clone()));
         },
     );
 
     group.bench_function(
-        "burst-v1",
+        "byte-sort",
         |b| {
             b.iter(|| byte_sort(&mut text.clone()));
         },
     );
 
     group.bench_function(
-        "std::unstable",
+        "std-unstable",
         |b| {
             b.iter(|| text.clone().sort_unstable());
         },
     );
 
     group.bench_function(
-        "std::stable",
+        "std-stable",
         |b| {
             b.iter(|| text.clone().sort());
         },

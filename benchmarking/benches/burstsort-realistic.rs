@@ -29,14 +29,14 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     group.warm_up_time(Duration::from_secs(20));
 
     group.bench_function(
-        "burst-dynamic",
+        "unicode-sort",
         |b| {
             b.iter(|| unicode_sort(&mut text.clone()));
         },
     );
 
     group.bench_function(
-        "burst-v1",
+        "byte-sort",
         |b| {
             b.iter(|| byte_sort(&mut text.clone()));
         },
