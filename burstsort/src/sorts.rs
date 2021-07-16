@@ -1,6 +1,43 @@
 use crate::alphanumeric::AlphaNumericTrieNode;
 
-pub fn tabular_burst_sort(data: &mut Vec<String>) {
+/// Sorts a vector of strings using a simple burstsort implementation.
+/// Data is sorted as if the string were simply an array of bytes.
+///
+/// This performs best on ASCII, but can perform alright on other unicode.
+/// Just don't expect anything resembling a lexicographic ordering on non-ascii text.
+///
+/// # Arguments
+///
+/// * `data`: Mutable vector reference of data to be sorted.
+///
+/// returns: ()
+///
+/// # Examples
+///
+/// ```
+/// use burstsort::byte_sort;
+///
+/// let mut d = vec![
+///     "cat".to_string(),
+///     "12345".to_string(),
+///     "Bat".to_string(),
+///     "apple".to_string(),
+///     "π".to_string(),
+/// ];
+///
+/// byte_sort(&mut d);
+/// assert_eq!(
+///     vec![
+///         "12345".to_string(),
+///         "Bat".to_string(),
+///         "apple".to_string(),
+///         "cat".to_string(),
+///         "π".to_string(),
+///     ],
+///     d
+/// );
+/// ```
+pub fn byte_sort(data: &mut Vec<String>) {
     let mut trie = crate::tabular::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
@@ -10,7 +47,21 @@ pub fn tabular_burst_sort(data: &mut Vec<String>) {
     trie.merge(data);
 }
 
-pub fn dynamic_burst_sort(data: &mut Vec<String>) {
+
+///
+///
+/// # Arguments
+///
+/// * `data`:
+///
+/// returns: ()
+///
+/// # Examples
+///
+/// ```
+///
+/// ```
+pub fn unicode_sort(data: &mut Vec<String>) {
     let mut trie = crate::dynamic::TrieNode::new(0);
 
     while let Some(s) = data.pop() {
@@ -32,7 +83,7 @@ pub fn alphanumeric_sort(data: &mut Vec<String>) -> Result<(), u8> {
     Ok(())
 }
 
-pub fn alphanumeric_silent_sort(data: &mut Vec<String>) {
+pub fn alphanumeric_unchecked_sort(data: &mut Vec<String>) {
     let mut trie = crate::alphanumeric::make_trie();
 
     while let Some(s) = data.pop() {
@@ -40,74 +91,4 @@ pub fn alphanumeric_silent_sort(data: &mut Vec<String>) {
     }
 
     trie.merge(data);
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[quickcheck]
-    fn check_tabular(data: Vec<String>) {
-        let mut expected = data.clone();
-        let mut actual = data;
-
-        expected.sort_unstable();
-        tabular_burst_sort(&mut actual);
-
-        assert_eq!(expected, actual)
-    }
-
-    #[quickcheck]
-    fn check_dynamic(data: Vec<String>) {
-        let mut expected = data.clone();
-        let mut actual = data;
-
-        expected.sort_unstable();
-        dynamic_burst_sort(&mut actual);
-
-        assert_eq!(expected, actual)
-    }
-
-    #[test]
-    fn simple_dynamic() {
-        let data = vec![
-            "cat".to_string(),
-            "apple".to_string(),
-            "jackal".to_string(),
-            "silver".to_string(),
-            "bat".to_string(),
-            "applesauce".to_string(),
-            "ostritch".to_string(),
-        ];
-
-        let mut expected = data.clone();
-        let mut actual = data;
-
-        expected.sort_unstable();
-        dynamic_burst_sort(&mut actual);
-
-        assert_eq!(expected, actual)
-    }
-
-    #[test]
-    fn simple_alpha() {
-        let data = vec![
-            "cat".to_string(),
-            "apple".to_string(),
-            "jackal".to_string(),
-            "si7568ver".to_string(),
-            "b4t".to_string(),
-            "appls4uce".to_string(),
-            "ostr1tch".to_string(),
-            "sdghdfg567gdfh5".to_string(),
-        ];
-
-        let mut expected = data.clone();
-        let mut actual = data;
-
-        expected.sort_unstable();
-        alphanumeric_sort(&mut actual).unwrap();
-
-        assert_eq!(expected, actual)
-    }
 }

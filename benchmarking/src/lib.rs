@@ -27,7 +27,7 @@ pub fn read_file_alpha(file: &str, printing: bool) -> Vec<String> {
     let words = text.unicode_words();
 
     let data = words
-        .filter(|s| s.as_bytes().iter().all(|c| c.is_ascii_alphanumeric()))
+        .filter(|s| s.as_bytes().iter().all(|c| c.is_ascii_alphabetic()))
         .map(ToOwned::to_owned)
         .collect();
 

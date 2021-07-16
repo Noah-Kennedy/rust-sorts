@@ -5,7 +5,7 @@ use criterion::Criterion;
 use tcmalloc::TCMalloc;
 
 use internal_benchmarking::{get_random_str, read_file_alpha};
-use burstsort::{dynamic_burst_sort, tabular_burst_sort, alphanumeric_sort, alphanumeric_silent_sort};
+use burstsort::{unicode_sort, byte_sort, alphanumeric_sort, alphanumeric_unchecked_sort};
 
 #[global_allocator]
 static GLOBAL: TCMalloc = TCMalloc;
@@ -50,21 +50,21 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     group.bench_function(
         "alphanumeric-silent",
         |b| {
-            b.iter(|| alphanumeric_silent_sort(&mut text.clone()));
+            b.iter(|| alphanumeric_unchecked_sort(&mut text.clone()));
         },
     );
 
     group.bench_function(
         "burst-dynamic",
         |b| {
-            b.iter(|| dynamic_burst_sort(&mut text.clone()));
+            b.iter(|| unicode_sort(&mut text.clone()));
         },
     );
 
     group.bench_function(
         "burst-v1",
         |b| {
-            b.iter(|| tabular_burst_sort(&mut text.clone()));
+            b.iter(|| byte_sort(&mut text.clone()));
         },
     );
 
