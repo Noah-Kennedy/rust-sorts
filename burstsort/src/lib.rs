@@ -13,6 +13,12 @@ pub mod benching;
 #[cfg(test)]
 mod tests;
 
+pub const ASCII_CONFIG: BurstConfig = BurstConfig {
+    burst_limit: 16384,
+    initial_capacity: 0,
+    classes: 127,
+};
+
 pub fn sort<T, I>(data: &mut Vec<T>, config: &BurstConfig)
     where T: PartialEq + AsRef<[I]> + Clone + Ord,
           I: Into<usize> + Clone
