@@ -1,17 +1,27 @@
+#[macro_use]
 #[cfg(test)]
-extern crate quickcheck;
-#[cfg(test)]
-#[macro_use(quickcheck)]
 extern crate quickcheck_macros;
 
-pub use sorts::*;
+pub use crate::trie::BurstConfig;
+use crate::trie::TrieNode;
 
-mod sorts;
+mod trie;
 
-mod unicode;
-mod byte;
-#[cfg(feature = "unstable")]
-mod alphanumeric;
+#[cfg(feature = "_benchmarking")]
+pub mod benching;
 
 #[cfg(test)]
 mod tests;
+
+pub fn sort<T, I>(data: &mut Vec<T>, config: &BurstConfig)
+    where T: PartialEq + AsRef<[I]> + Clone + Ord,
+          I: Into<usize> + Clone
+{
+    let mut root = TrieNode::root(config);
+
+    for x in data.drain(..) {
+        root.insert(x);
+    }
+
+    root.merge(data);
+}
