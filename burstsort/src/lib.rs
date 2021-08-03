@@ -10,6 +10,7 @@ mod sorts;
 
 mod unicode;
 mod byte;
+#[cfg(feature = "unstable")]
 mod alphanumeric;
 
 #[cfg(test)]

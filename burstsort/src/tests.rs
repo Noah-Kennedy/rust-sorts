@@ -39,14 +39,16 @@ fn check_unicode_sort(data: Vec<String>) {
     let mut actual = data;
 
     expected.sort();
-    unicode_sort(&mut actual);
+    unicode_sort_unstable(&mut actual);
 
     pretty_assertions::assert_eq!(expected, actual)
 }
 
 #[test]
 fn byte_file_english() {
-    let data = read_file("../data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt");
+    let mut data = read_file("../data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt");
+
+    drop(data.drain(8192*4..));
 
     let mut expected = data.clone();
     let mut actual = data;
@@ -59,20 +61,24 @@ fn byte_file_english() {
 
 #[test]
 fn unicode_file_english() {
-    let data = read_file("../data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt");
+    let mut data = read_file("../data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt");
+
+    drop(data.drain(8192*4..));
 
     let mut expected = data.clone();
     let mut actual = data;
 
     expected.sort();
-    unicode_sort(&mut actual);
+    unicode_sort_unstable(&mut actual);
 
     pretty_assertions::assert_eq!(expected, actual)
 }
 
 #[test]
 fn byte_file_arabic() {
-    let data = read_file("../data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt");
+    let mut data = read_file("../data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt");
+
+    drop(data.drain(8192*4..));
 
     let mut expected = data.clone();
     let mut actual = data;
@@ -85,13 +91,15 @@ fn byte_file_arabic() {
 
 #[test]
 fn unicode_file_arabic() {
-    let data = read_file("../data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt");
+    let mut data = read_file("../data/ara_news_2020_1M/ara_news_2020_1M-sentences.txt");
+
+    drop(data.drain(8192*4..));
 
     let mut expected = data.clone();
     let mut actual = data;
 
     expected.sort();
-    unicode_sort(&mut actual);
+    unicode_sort_unstable(&mut actual);
 
     pretty_assertions::assert_eq!(expected, actual)
 }

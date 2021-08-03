@@ -5,7 +5,7 @@ use criterion::Criterion;
 use tcmalloc::TCMalloc;
 
 use internal_benchmarking::{read_file};
-use burstsort::{byte_sort, unicode_sort};
+use burstsort::{byte_sort, unicode_sort_unstable, byte_sort_unstable};
 
 #[global_allocator]
 static GLOBAL: TCMalloc = TCMalloc;
@@ -29,9 +29,9 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     group.warm_up_time(Duration::from_secs(20));
 
     group.bench_function(
-        "unicode-sort",
+        "unicode-sort-unstable",
         |b| {
-            b.iter(|| unicode_sort(&mut text.clone()));
+            b.iter(|| unicode_sort_unstable(&mut text.clone()));
         },
     );
 
@@ -39,6 +39,13 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
         "byte-sort",
         |b| {
             b.iter(|| byte_sort(&mut text.clone()));
+        },
+    );
+
+    group.bench_function(
+        "byte-sort-unstable",
+        |b| {
+            b.iter(|| byte_sort_unstable(&mut text.clone()));
         },
     );
 

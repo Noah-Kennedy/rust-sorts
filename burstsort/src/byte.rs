@@ -1,25 +1,25 @@
 const BURST_LIMIT: usize = 8192;
 
-pub struct TrieNode {
+pub struct TrieNode<T> {
     pub offset: usize,
-    pub data: NodeKind,
+    pub data: NodeKind<T>,
 }
 
-pub enum NodeKind {
-    Bucket(BucketNode),
-    Table(TableNode),
+pub enum NodeKind<T> {
+    Bucket(BucketNode<T>),
+    Table(TableNode<T>),
 }
 
-pub struct BucketNode {
-    pub bucket: Vec<String>,
+pub struct BucketNode<T> {
+    pub bucket: Vec<T>,
 }
 
-pub struct TableNode {
-    pub matches: Vec<String>,
-    pub table: Vec<TrieNode>,
+pub struct TableNode<T> {
+    pub matches: Vec<T>,
+    pub table: Vec<TrieNode<T>>,
 }
 
-impl TrieNode {
+impl<T> TrieNode<T> where T: AsRef<[u8]> {
     pub fn new(offset: usize) -> Self {
         Self {
             offset,
@@ -29,7 +29,7 @@ impl TrieNode {
         }
     }
 
-    pub fn insert(&mut self, s: String) {
+    pub fn insert(&mut self, s: T) {
         match &mut self.data {
             NodeKind::Table(data) => data.insert(s, self.offset),
             NodeKind::Bucket(data) => {
@@ -43,16 +43,23 @@ impl TrieNode {
         }
     }
 
-    pub fn merge(&mut self, target: &mut Vec<String>) {
+    pub fn merge(&mut self, target: &mut Vec<T>) {
         match &mut self.data {
             NodeKind::Bucket(bucket) => bucket.merge(target, self.offset),
             NodeKind::Table(table) => table.merge(target),
         }
     }
+
+    pub fn merge_unstable(&mut self, target: &mut Vec<T>) {
+        match &mut self.data {
+            NodeKind::Bucket(bucket) => bucket.merge_unstable(target, self.offset),
+            NodeKind::Table(table) => table.merge_unstable(target),
+        }
+    }
 }
 
-impl BucketNode {
-    pub fn insert(&mut self, s: String) {
+impl<T> BucketNode<T> where T: AsRef<[u8]> {
+    pub fn insert(&mut self, s: T) {
         self.bucket.push(s);
     }
 
@@ -60,7 +67,7 @@ impl BucketNode {
         self.bucket.len() >= BURST_LIMIT
     }
 
-    pub fn burst(&mut self, off: usize) -> TableNode {
+    pub fn burst(&mut self, off: usize) -> TableNode<T> {
         let mut table = TableNode::new(off);
 
         while let Some(item) = self.bucket.pop() {
@@ -70,15 +77,22 @@ impl BucketNode {
         table
     }
 
-    pub fn merge(&mut self, target: &mut Vec<String>, offset: usize) {
+    pub fn merge(&mut self, target: &mut Vec<T>, offset: usize) {
+        self.bucket.sort_by(|l, r| {
+            l.as_ref()[offset..].cmp(&r.as_ref()[offset..])
+        });
+        target.append(&mut self.bucket)
+    }
+
+    pub fn merge_unstable(&mut self, target: &mut Vec<T>, offset: usize) {
         self.bucket.sort_unstable_by(|l, r| {
-            l.as_bytes()[offset..].cmp(&r.as_bytes()[offset..])
+            l.as_ref()[offset..].cmp(&r.as_ref()[offset..])
         });
         target.append(&mut self.bucket)
     }
 }
 
-impl TableNode {
+impl<T> TableNode<T> where T: AsRef<[u8]> {
     pub fn new(offset: usize) -> Self {
         let mut table = Vec::new();
 
@@ -89,8 +103,8 @@ impl TableNode {
         Self { matches: Vec::new(), table }
     }
 
-    pub fn insert(&mut self, s: String, off: usize) {
-        let raw_form = s.as_bytes();
+    pub fn insert(&mut self, s: T, off: usize) {
+        let raw_form = s.as_ref();
         if off == raw_form.len() {
             self.matches.push(s)
         } else {
@@ -99,11 +113,19 @@ impl TableNode {
         }
     }
 
-    pub fn merge(&mut self, target: &mut Vec<String>) {
+    pub fn merge(&mut self, target: &mut Vec<T>) {
         target.append(&mut self.matches);
 
         for entry in self.table.iter_mut() {
             entry.merge(target)
+        }
+    }
+
+    pub fn merge_unstable(&mut self, target: &mut Vec<T>) {
+        target.append(&mut self.matches);
+
+        for entry in self.table.iter_mut() {
+            entry.merge_unstable(target)
         }
     }
 }

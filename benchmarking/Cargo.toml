@@ -16,6 +16,7 @@ unicode-segmentation = "^1.8.0"
 ###################################################################################################
 [dependencies.burstsort]
 path = "../burstsort"
+features = ["unstable"]
 
 ###################################################################################################
 # Dev Dependencies
@@ -31,5 +32,5 @@ name = "burstsort-realistic"
 harness = false
 
 [[bench]]
-name = "burstsort-alphanumeric"
+name = "burstsort-random"
 harness = false

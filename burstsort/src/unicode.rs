@@ -1,17 +1,17 @@
 const BURST_LIMIT: usize = 8192;
 
-pub struct TrieNode {
+pub struct TrieNode<T> {
     pub offset: usize,
-    pub matches: Vec<String>,
-    pub kind: NodeKind,
+    pub matches: Vec<T>,
+    pub kind: NodeKind<T>,
 }
 
-pub enum NodeKind {
-    Collapsed(Vec<String>),
-    Burst(Vec<(char, TrieNode)>),
+pub enum NodeKind<T> {
+    Collapsed(Vec<T>),
+    Burst(Vec<(char, TrieNode<T>)>),
 }
 
-impl TrieNode {
+impl<T> TrieNode<T> where T: AsRef<str> {
     pub fn new(offset: usize) -> Self {
         Self {
             offset,
@@ -20,8 +20,8 @@ impl TrieNode {
         }
     }
 
-    pub fn insert(&mut self, s: String) {
-        if let Some(c) = s.chars().nth(self.offset) {
+    pub fn insert(&mut self, s: T) {
+        if let Some(c) = s.as_ref().chars().nth(self.offset) {
             match &mut self.kind {
                 NodeKind::Burst(children) => {
                     add_to_burst_node(children, s, c, self.offset);
@@ -41,10 +41,10 @@ impl TrieNode {
 
     fn burst(&mut self) {
         if let NodeKind::Collapsed(children) = &mut self.kind {
-            let mut new_children: Vec<(char, TrieNode)> = Vec::new();
+            let mut new_children: Vec<(char, TrieNode<T>)> = Vec::new();
 
             while let Some(child) = children.pop() {
-                let k = child.chars().nth(self.offset).unwrap();
+                let k = child.as_ref().chars().nth(self.offset).unwrap();
                 add_to_burst_node(&mut new_children, child, k, self.offset)
             }
 
@@ -54,12 +54,12 @@ impl TrieNode {
         }
     }
 
-    pub fn merge(&mut self, target: &mut Vec<String>) {
+    pub fn merge(&mut self, target: &mut Vec<T>) {
         target.append(&mut self.matches);
 
         match &mut self.kind {
             NodeKind::Collapsed(children) => {
-                children.sort_unstable();
+                children.sort_by(|l, r| l.as_ref().cmp(r.as_ref()));
                 target.append(children);
             }
             NodeKind::Burst(children) => {
@@ -69,10 +69,28 @@ impl TrieNode {
             }
         }
     }
+
+    pub fn merge_unstable(&mut self, target: &mut Vec<T>) {
+        target.append(&mut self.matches);
+
+        match &mut self.kind {
+            NodeKind::Collapsed(children) => {
+                children.sort_unstable_by(|l, r| l.as_ref().cmp(r.as_ref()));
+                target.append(children);
+            }
+            NodeKind::Burst(children) => {
+                for (_, child) in children.iter_mut() {
+                    child.merge_unstable(target)
+                }
+            }
+        }
+    }
 }
 
 #[inline(always)]
-fn add_to_burst_node(children: &mut Vec<(char, TrieNode)>, s: String, c: char, offset: usize) {
+fn add_to_burst_node<T>(children: &mut Vec<(char, TrieNode<T>)>, s: T, c: char, offset: usize)
+    where T: AsRef<str>
+{
     match children.binary_search_by_key(&c, |x| x.0) {
         Ok(idx) => {
             children[idx].1.insert(s);
