@@ -19,7 +19,7 @@ pub struct TrieNode<C, T, I> {
 #[derive(Clone)]
 pub enum TrieNodeKind<C, T, I> {
     List(Vec<T>),
-    Burst(Vec<Box<TrieNode<C, T, I>>>),
+    Burst(Vec<TrieNode<C, T, I>>),
 }
 
 impl<C, T, I> TrieNode<C, T, I>
@@ -48,7 +48,7 @@ impl<C, T, I> TrieNode<C, T, I>
                     if list.len() >= self.config.borrow().burst_limit {
                         // burst
                         let mut table = vec![
-                            Box::new(Self {
+                            Self {
                                 level: self.level + 1,
                                 config: self.config.clone(),
                                 matches: Vec::with_capacity(
@@ -56,7 +56,7 @@ impl<C, T, I> TrieNode<C, T, I>
                                 inner: TrieNodeKind::List(
                                     Vec::with_capacity(self.config.borrow().initial_capacity)),
                                 _phantom: PhantomData::default(),
-                            });
+                            };
                             self.config.borrow().classes];
 
                         for x in list.drain(..) {
