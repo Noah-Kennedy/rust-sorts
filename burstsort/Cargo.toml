@@ -3,29 +3,49 @@ name = "burstsort"
 version = "0.1.0"
 edition = "2018"
 
-###################################################################################################
-# FEATURES
-###################################################################################################
 [features]
-unstable = ["array-init"]
+_benchmarking = ["unicode-segmentation", "rand", "criterion"]
 
 ###################################################################################################
-# DEPENDENCIES
+# Dependencies
 ###################################################################################################
 [dependencies]
 
 ###################################################################################################
-# OPTIONAL DEPENDENCIES
+# Bench Dependencies
 ###################################################################################################
-[dependencies.array-init]
-version = "^2.0.0"
+[dependencies.criterion]
+version = "0.3.5"
+optional = true
+
+[dependencies.rand]
+version = "0.8.4"
+optional = true
+
+[dependencies.tcmalloc]
+version = "0.3.0"
+optional = true
+
+[dependencies.unicode-segmentation]
+version = "1.8.0"
 optional = true
 
 ###################################################################################################
-# DEV-DEPENDENCIES
+# Dev Dependencies
 ###################################################################################################
 [dev-dependencies]
-quickcheck = "^1.0"
-quickcheck_macros = "^1.0"
-unicode-segmentation = "^1.8.0"
-pretty_assertions = "^0.7.2"
+quickcheck = "^1.0.3"
+quickcheck_macros = "^1.0.0"
+
+###################################################################################################
+# BENCHES
+###################################################################################################
+[[bench]]
+name = "burstsort-tcmalloc-fight"
+required-features = ["_benchmarking", "tcmalloc"]
+harness = false
+
+[[bench]]
+name = "burstsort-malloc-fight"
+required-features = ["_benchmarking"]
+harness = false

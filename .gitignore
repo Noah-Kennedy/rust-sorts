@@ -3,3 +3,5 @@
 Cargo.lock
 /data
 perf.*
+
+criterion-reports/
