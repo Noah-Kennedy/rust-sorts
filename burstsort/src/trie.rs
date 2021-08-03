@@ -45,7 +45,7 @@ impl<C, T, I> TrieNode<C, T, I>
                 TrieNodeKind::List(list) => {
                     list.push(item);
 
-                    if list.len() >= self.config.borrow().burst_limit {
+                    if list.len() > self.config.borrow().burst_limit {
                         // burst
                         let mut table = vec![
                             Self {
