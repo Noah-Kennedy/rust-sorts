@@ -9,8 +9,8 @@ use burstsort::BurstConfig;
 const LENGTH: usize = 2_000_000;
 
 const BURST_STR: &str = "burstsort";
-const STD_STABLE_STR: &str = "std-stable";
-const STD_UNSTABLE_STR: &str = "std-unstable";
+// const STD_STABLE_STR: &str = "std-stable";
+// const STD_UNSTABLE_STR: &str = "std-unstable";
 
 
 const CONFIG: BurstConfig = BurstConfig {
@@ -41,19 +41,19 @@ fn random_count(c: &mut Criterion) {
             },
         );
 
-        group.bench_function(
-            STD_UNSTABLE_STR,
-            |b| {
-                b.iter(|| text.clone().sort_unstable());
-            },
-        );
-
-        group.bench_function(
-            STD_STABLE_STR,
-            |b| {
-                b.iter(|| text.clone().sort());
-            },
-        );
+        // group.bench_function(
+        //     STD_UNSTABLE_STR,
+        //     |b| {
+        //         b.iter(|| text.clone().sort_unstable());
+        //     },
+        // );
+        //
+        // group.bench_function(
+        //     STD_STABLE_STR,
+        //     |b| {
+        //         b.iter(|| text.clone().sort());
+        //     },
+        // );
     }
 }
 
@@ -72,19 +72,19 @@ fn random_length(c: &mut Criterion) {
             },
         );
 
-        group.bench_function(
-            STD_UNSTABLE_STR,
-            |b| {
-                b.iter(|| text.clone().sort_unstable());
-            },
-        );
-
-        group.bench_function(
-            STD_STABLE_STR,
-            |b| {
-                b.iter(|| text.clone().sort());
-            },
-        );
+        // group.bench_function(
+        //     STD_UNSTABLE_STR,
+        //     |b| {
+        //         b.iter(|| text.clone().sort_unstable());
+        //     },
+        // );
+        //
+        // group.bench_function(
+        //     STD_STABLE_STR,
+        //     |b| {
+        //         b.iter(|| text.clone().sort());
+        //     },
+        // );
     }
 }
 
@@ -103,19 +103,19 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
         },
     );
 
-    group.bench_function(
-        STD_UNSTABLE_STR,
-        |b| {
-            b.iter(|| text.clone().sort_unstable());
-        },
-    );
-
-    group.bench_function(
-        STD_STABLE_STR,
-        |b| {
-            b.iter(|| text.clone().sort());
-        },
-    );
+    // group.bench_function(
+    //     STD_UNSTABLE_STR,
+    //     |b| {
+    //         b.iter(|| text.clone().sort_unstable());
+    //     },
+    // );
+    //
+    // group.bench_function(
+    //     STD_STABLE_STR,
+    //     |b| {
+    //         b.iter(|| text.clone().sort());
+    //     },
+    // );
 }
 
 criterion_group!(
