@@ -10,7 +10,7 @@ fn check_sort_string(mut data: Vec<String>) {
 
     let mut expected = data.clone();
 
-    sort(&mut data, &config);
+    burstsort(&mut data, &config);
 
     expected.sort();
 

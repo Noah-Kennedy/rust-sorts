@@ -1,6 +1,6 @@
 use std::time::Duration;
 
-use criterion::{criterion_group, criterion_main, Throughput};
+use criterion::{criterion_group, criterion_main, Throughput, BenchmarkId};
 use criterion::Criterion;
 
 use burstsort::ASCII_CONFIG;
@@ -9,8 +9,8 @@ use burstsort::benching::{get_random_str, read_file_alpha};
 const LENGTH: usize = 2_000_000;
 
 const BURST_STR: &str = "burstsort";
-// const STD_STABLE_STR: &str = "std-stable";
-// const STD_UNSTABLE_STR: &str = "std-unstable";
+const STD_STABLE_STR: &str = "std-stable";
+const STD_UNSTABLE_STR: &str = "std-unstable";
 
 fn english(c: &mut Criterion) {
     let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
@@ -28,25 +28,25 @@ fn random_count(c: &mut Criterion) {
         group.throughput(Throughput::Elements(x as u64));
 
         group.bench_function(
-            BURST_STR,
+            BenchmarkId::new(BURST_STR, x),
             |b| {
-                b.iter(|| burstsort::sort(&mut text.clone(), &ASCII_CONFIG));
+                b.iter(|| burstsort::burstsort(&mut text.clone(), &ASCII_CONFIG));
             },
         );
 
-        // group.bench_function(
-        //     STD_UNSTABLE_STR,
-        //     |b| {
-        //         b.iter(|| text.clone().sort_unstable());
-        //     },
-        // );
-        //
-        // group.bench_function(
-        //     STD_STABLE_STR,
-        //     |b| {
-        //         b.iter(|| text.clone().sort());
-        //     },
-        // );
+        group.bench_function(
+            BenchmarkId::new(STD_UNSTABLE_STR, x),
+            |b| {
+                b.iter(|| text.clone().sort_unstable());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(STD_STABLE_STR, x),
+            |b| {
+                b.iter(|| text.clone().sort());
+            },
+        );
     }
 }
 
@@ -59,25 +59,25 @@ fn random_length(c: &mut Criterion) {
         group.throughput(Throughput::Elements(x as u64 / 2));
 
         group.bench_function(
-            BURST_STR,
+            BenchmarkId::new(BURST_STR, x),
             |b| {
-                b.iter(|| burstsort::sort(&mut text.clone(), &ASCII_CONFIG));
+                b.iter(|| burstsort::burstsort(&mut text.clone(), &ASCII_CONFIG));
             },
         );
 
-        // group.bench_function(
-        //     STD_UNSTABLE_STR,
-        //     |b| {
-        //         b.iter(|| text.clone().sort_unstable());
-        //     },
-        // );
-        //
-        // group.bench_function(
-        //     STD_STABLE_STR,
-        //     |b| {
-        //         b.iter(|| text.clone().sort());
-        //     },
-        // );
+        group.bench_function(
+            BenchmarkId::new(STD_UNSTABLE_STR, x),
+            |b| {
+                b.iter(|| text.clone().sort_unstable());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(STD_STABLE_STR, x),
+            |b| {
+                b.iter(|| text.clone().sort());
+            },
+        );
     }
 }
 
@@ -92,28 +92,28 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
     group.bench_function(
         BURST_STR,
         |b| {
-            b.iter(|| burstsort::sort(&mut text.clone(), &ASCII_CONFIG));
+            b.iter(|| burstsort::burstsort(&mut text.clone(), &ASCII_CONFIG));
         },
     );
 
-    // group.bench_function(
-    //     STD_UNSTABLE_STR,
-    //     |b| {
-    //         b.iter(|| text.clone().sort_unstable());
-    //     },
-    // );
-    //
-    // group.bench_function(
-    //     STD_STABLE_STR,
-    //     |b| {
-    //         b.iter(|| text.clone().sort());
-    //     },
-    // );
+    group.bench_function(
+        STD_UNSTABLE_STR,
+        |b| {
+            b.iter(|| text.clone().sort_unstable());
+        },
+    );
+
+    group.bench_function(
+        STD_STABLE_STR,
+        |b| {
+            b.iter(|| text.clone().sort());
+        },
+    );
 }
 
 criterion_group!(
     benches,
-    // random_length, random_count,
+    random_length, random_count,
     english,
 );
 criterion_main!(benches);

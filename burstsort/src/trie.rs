@@ -1,9 +1,13 @@
 use std::borrow::Borrow;
 use std::marker::PhantomData;
 
+/// Tuning configuration for burstsort.
 pub struct BurstConfig {
+    /// Threshold after which nodes are burst.
     pub burst_limit: usize,
+    /// Initial allocation capacity of storage vectors.
     pub initial_capacity: usize,
+    /// Number of radix buckets.
     pub classes: usize,
 }
 

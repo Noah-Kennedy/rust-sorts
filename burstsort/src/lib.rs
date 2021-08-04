@@ -4,6 +4,7 @@ extern crate quickcheck_macros;
 
 pub use crate::trie::BurstConfig;
 use crate::trie::TrieNode;
+use std::borrow::Borrow;
 
 mod trie;
 
@@ -19,8 +20,21 @@ pub const ASCII_CONFIG: BurstConfig = BurstConfig {
     classes: 127,
 };
 
-pub fn sort<T, I>(data: &mut Vec<T>, config: &BurstConfig)
+/// Performs an element-by-element burstsort on the provided input.
+///
+/// # Arguments
+///
+/// * `data`: Vector of inputs to sort.
+/// * `config`: Tuning configuration for the burstsort.
+///
+/// # Examples
+///
+/// ```
+///
+/// ```
+pub fn burstsort<T, C, I>(data: &mut Vec<T>, config: C)
     where T: PartialEq + AsRef<[I]> + Clone + Ord,
+          C: Borrow<BurstConfig> + Clone,
           I: Into<usize> + Clone
 {
     let mut root = TrieNode::root(config);
