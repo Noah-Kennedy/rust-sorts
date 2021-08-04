@@ -49,3 +49,8 @@ harness = false
 name = "burstsort-malloc-fight"
 required-features = ["_benchmarking"]
 harness = false
+
+[[bench]]
+name = "burstsort-tuning"
+required-features = ["_benchmarking", "tcmalloc"]
+harness = false
