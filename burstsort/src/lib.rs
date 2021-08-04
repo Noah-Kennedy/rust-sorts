@@ -35,7 +35,7 @@ pub const ASCII_CONFIG: BurstConfig = BurstConfig {
 pub fn burstsort<T, C, I>(data: &mut Vec<T>, config: C)
     where T: PartialEq + AsRef<[I]> + Clone + Ord,
           C: Borrow<BurstConfig> + Clone,
-          I: Into<usize> + Clone
+          I: Into<usize> + Clone + Ord
 {
     let mut root = TrieNode::root(config);
 

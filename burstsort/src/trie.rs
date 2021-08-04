@@ -29,7 +29,7 @@ pub enum TrieNodeKind<C, T, I> {
 impl<C, T, I> TrieNode<C, T, I>
     where C: Borrow<BurstConfig> + Clone,
           T: PartialEq + AsRef<[I]> + Clone + Ord,
-          I: Into<usize> + Clone
+          I: Into<usize> + Clone + Ord
 {
     pub fn root(config: C) -> Self {
         Self {
@@ -81,14 +81,28 @@ impl<C, T, I> TrieNode<C, T, I>
     }
 
     pub fn merge(&mut self, target: &mut Vec<T>) {
+        // append exact matches for node first
         target.append(&mut self.matches);
 
         match &mut self.inner {
             TrieNodeKind::List(list) => {
-                list.sort_unstable();
+                // now sort internal collection and append
+
+                let level = self.level;
+
+                // unstable sort works best with smaller arrays
+                // if we only sort by remaining elements, we improve the worst case where the
+                // array is long
+                list.sort_unstable_by(|lhs, rhs| {
+                    let lhs_remaining = &lhs.as_ref()[level..];
+                    let rhs_remaining = &rhs.as_ref()[level..];
+                    lhs_remaining.cmp(rhs_remaining)
+                });
+
                 target.append(list);
             }
             TrieNodeKind::Burst(table) => {
+                // sequentially merge each table entry
                 for x in table.iter_mut() {
                     x.merge(target)
                 }
