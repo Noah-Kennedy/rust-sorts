@@ -52,6 +52,7 @@ impl<C, T, I> TrieNode<C, T, I>
                 TrieNodeKind::List(list) => {
                     let cap = self.config.borrow().initial_capacity;
 
+                    // pre-allocate if this is a "fresh" list node
                     if cap > 0 && list.is_empty() {
                         list.reserve(cap);
                     }
