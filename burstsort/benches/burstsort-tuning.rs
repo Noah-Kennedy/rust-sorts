@@ -4,8 +4,8 @@ use criterion::Criterion;
 use burstsort::{ASCII_CONFIG, BurstConfig};
 use burstsort::benching::read_file_alpha;
 
-// #[global_allocator]
-// static GLOBAL: tcmalloc::TCMalloc = tcmalloc::TCMalloc;
+#[global_allocator]
+static GLOBAL: tcmalloc::TCMalloc = tcmalloc::TCMalloc;
 
 const BURST_STR: &str = "burstsort";
 
