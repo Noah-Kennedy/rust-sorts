@@ -9,6 +9,9 @@ pub struct BurstConfig {
     pub initial_capacity: usize,
     /// Number of radix buckets.
     pub classes: usize,
+    /// Hints to the algorithm that items may be long.
+    /// Of all the config parameters, this is the one you should look at tuning.
+    pub hint_long: bool,
 }
 
 #[derive(Clone)]
@@ -47,6 +50,12 @@ impl<C, T, I> TrieNode<C, T, I>
 
             match &mut self.inner {
                 TrieNodeKind::List(list) => {
+                    let cap = self.config.borrow().initial_capacity;
+
+                    if cap > 0 && list.is_empty() {
+                        list.reserve(cap);
+                    }
+
                     list.push(item);
 
                     if list.len() > self.config.borrow().burst_limit {
@@ -55,10 +64,8 @@ impl<C, T, I> TrieNode<C, T, I>
                             Self {
                                 level: self.level + 1,
                                 config: self.config.clone(),
-                                matches: Vec::with_capacity(
-                                    self.config.borrow().initial_capacity),
-                                inner: TrieNodeKind::List(
-                                    Vec::with_capacity(self.config.borrow().initial_capacity)),
+                                matches: Vec::with_capacity(cap),
+                                inner: TrieNodeKind::List(Vec::new()),
                                 _phantom: PhantomData::default(),
                             };
                             self.config.borrow().classes];
@@ -88,16 +95,18 @@ impl<C, T, I> TrieNode<C, T, I>
             TrieNodeKind::List(list) => {
                 // now sort internal collection and append
 
-                let level = self.level;
+                // if arrays may be long, best to only sort the remaining elements
+                if self.config.borrow().hint_long {
+                    let level = self.level;
 
-                // unstable sort works best with smaller arrays
-                // if we only sort by remaining elements, we improve the worst case where the
-                // array is long
-                list.sort_unstable_by(|lhs, rhs| {
-                    let lhs_remaining = &lhs.as_ref()[level..];
-                    let rhs_remaining = &rhs.as_ref()[level..];
-                    lhs_remaining.cmp(rhs_remaining)
-                });
+                    list.sort_unstable_by(|lhs, rhs| {
+                        let lhs_remaining = &lhs.as_ref()[level..];
+                        let rhs_remaining = &rhs.as_ref()[level..];
+                        lhs_remaining.cmp(rhs_remaining)
+                    });
+                } else {
+                    list.sort_unstable();
+                }
 
                 target.append(list);
             }

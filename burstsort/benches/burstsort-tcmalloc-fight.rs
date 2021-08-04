@@ -4,7 +4,7 @@ use criterion::{criterion_group, criterion_main, Throughput, BenchmarkId};
 use criterion::Criterion;
 use tcmalloc::TCMalloc;
 
-use burstsort::ASCII_CONFIG;
+use burstsort::{ASCII_CONFIG, LONG_ASCII_CONFIG};
 use burstsort::benching::{get_random_str, read_file_alpha};
 
 #[global_allocator]
@@ -13,6 +13,7 @@ static GLOBAL: TCMalloc = TCMalloc;
 const LENGTH: usize = 2_000_000;
 
 const BURST_STR: &str = "burstsort";
+const LONG_BURST_STR: &str = "burstsort-long";
 const STD_STABLE_STR: &str = "std-stable";
 const STD_UNSTABLE_STR: &str = "std-unstable";
 
@@ -70,6 +71,13 @@ fn random_length(c: &mut Criterion) {
         );
 
         group.bench_function(
+            BenchmarkId::new(LONG_BURST_STR, x),
+            |b| {
+                b.iter(|| burstsort::burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
             BenchmarkId::new(STD_UNSTABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().sort_unstable());
@@ -97,6 +105,13 @@ fn bench_with_text(c: &mut Criterion, param: &str, text: Vec<String>) {
         BURST_STR,
         |b| {
             b.iter(|| burstsort::burstsort(&mut text.clone(), &ASCII_CONFIG));
+        },
+    );
+
+    group.bench_function(
+        LONG_BURST_STR,
+        |b| {
+            b.iter(|| burstsort::burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
         },
     );
 

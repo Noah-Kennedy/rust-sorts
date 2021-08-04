@@ -19,11 +19,22 @@ pub const ASCII_CONFIG: BurstConfig = BurstConfig {
     burst_limit: 16384,
     initial_capacity: 0,
     classes: 127,
+    hint_long: false,
+};
+
+pub const LONG_ASCII_CONFIG: BurstConfig = BurstConfig {
+    hint_long: true,
+    ..ASCII_CONFIG
 };
 
 pub const UTF8_CONFIG: BurstConfig = BurstConfig {
     classes: 256,
     ..ASCII_CONFIG
+};
+
+pub const LONG_UTF8_CONFIG: BurstConfig = BurstConfig {
+    hint_long: true,
+    ..UTF8_CONFIG
 };
 
 /// Sorts the provided data using a burstsort algorithm.
