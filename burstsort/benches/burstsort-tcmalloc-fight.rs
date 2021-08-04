@@ -18,13 +18,13 @@ const STD_UNSTABLE_STR: &str = "std-unstable";
 
 fn english(c: &mut Criterion) {
     let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
-    bench_with_text(c, "tcmalloc-alphabetical-english", text);
+    bench_with_text(c, "compare-tcmalloc-alphabetical-english", text);
 }
 
 fn random_count(c: &mut Criterion) {
     const STEP_SIZE: usize = 25_000;
 
-    let mut group = c.benchmark_group("tcmalloc-random-by-count");
+    let mut group = c.benchmark_group("compare-tcmalloc-random-by-count");
 
     for x in (STEP_SIZE..=2_000_000).step_by(STEP_SIZE) {
         let text = get_random_str(x, 1, 16);
@@ -55,7 +55,7 @@ fn random_count(c: &mut Criterion) {
 }
 
 fn random_length(c: &mut Criterion) {
-    let mut group = c.benchmark_group("tcmalloc-random-by-length");
+    let mut group = c.benchmark_group("compare-tcmalloc-random-by-length");
 
     for x in [1, 2, 4, 8, 16, 32, 64, 128, 256] {
         let text = get_random_str(LENGTH, 0, x);
