@@ -12,11 +12,10 @@ const BURST_STR: &str = "burstsort";
 fn burst_limit(c: &mut Criterion) {
     let mut group = c.benchmark_group("burst-limit");
 
+    let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
+
     for burst_limit in [256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536] {
-        let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
-
         group.throughput(Throughput::Elements(burst_limit as u64));
-
         group.bench_function(
             BenchmarkId::new(BURST_STR, burst_limit),
             |b| {
@@ -33,11 +32,12 @@ fn burst_limit(c: &mut Criterion) {
 fn initial_capacity(c: &mut Criterion) {
     let mut group = c.benchmark_group("init-cap");
 
-    for initial_capacity in [0, 1024, 2048, 3072, 4096, 5120, 6144, 7168, 8192] {
-        let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
+    let capacities = [0, 32, 64, 128, 256, 512, 1024, 2048, 3072, 4096, 5120, 6144, 7168, 8192];
 
+    let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
+
+    for initial_capacity in capacities {
         group.throughput(Throughput::Elements(initial_capacity as u64));
-
         group.bench_function(
             BenchmarkId::new(BURST_STR, initial_capacity),
             |b| {
