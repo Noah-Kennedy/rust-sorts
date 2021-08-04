@@ -1,9 +1,177 @@
-use std::time::Instant;
+use std::time::{Duration, Instant};
 
-use criterion::black_box;
+use criterion::{BenchmarkId, black_box, Criterion, Throughput};
 use rand::distributions::{Alphanumeric, Distribution, Uniform};
 use rand::distributions::uniform::SampleUniform;
 use unicode_segmentation::UnicodeSegmentation;
+
+use crate::{ASCII_CONFIG, burstsort, LONG_ASCII_CONFIG};
+use rayon::prelude::ParallelSliceMut;
+
+const LENGTH: usize = 2_000_000;
+
+const BURST_STR: &str = "burstsort";
+const LONG_BURST_STR: &str = "burstsort-long";
+const STD_STABLE_STR: &str = "std-stable";
+const STD_UNSTABLE_STR: &str = "std-unstable";
+const RAYON_STABLE_STR: &str = "rayon-par-stable";
+const RAYON_UNSTABLE_STR: &str = "rayon-par-unstable";
+
+
+pub fn bench_english(c: &mut Criterion, allocator: &str) {
+    let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
+    bench_with_text(c, "compare-alphabetical-english", allocator, text);
+}
+
+pub fn bench_random_count(c: &mut Criterion, allocator: &str) {
+    const STEP_SIZE: usize = 25_000;
+
+    let mut group = c.benchmark_group("compare-random-by-count");
+
+    for x in (STEP_SIZE..=2_000_000).step_by(STEP_SIZE) {
+        let text = get_random_str(x, 1, 16);
+
+        group.throughput(Throughput::Elements(x as u64));
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, BURST_STR), x),
+            |b| {
+                b.iter(|| burstsort(&mut text.clone(), &ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, STD_UNSTABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().sort_unstable());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, STD_STABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().sort());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, RAYON_STABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().par_sort());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, RAYON_UNSTABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().par_sort_unstable());
+            },
+        );
+    }
+}
+
+pub fn bench_random_length(c: &mut Criterion, allocator: &str) {
+    let mut group = c.benchmark_group("compare-random-by-length");
+
+    for x in [1, 2, 4, 8, 16, 32, 64, 128, 256] {
+        let text = get_random_str(LENGTH, 0, x);
+
+        group.throughput(Throughput::Elements(x as u64 / 2));
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, BURST_STR), x),
+            |b| {
+                b.iter(|| burstsort(&mut text.clone(), &ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, LONG_BURST_STR), x),
+            |b| {
+                b.iter(|| burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, STD_UNSTABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().sort_unstable());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, STD_STABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().sort());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, RAYON_STABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().par_sort());
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(format!("{}-{}", allocator, RAYON_UNSTABLE_STR), x),
+            |b| {
+                b.iter(|| text.clone().par_sort_unstable());
+            },
+        );
+    }
+}
+
+fn bench_with_text(c: &mut Criterion, param: &str, allocator: &str, text: Vec<String>) {
+    println!("{}:\n\t{}", param, text.len());
+
+    let mut group = c.benchmark_group(param);
+
+    group.sample_size(128);
+    group.warm_up_time(Duration::from_secs(20));
+
+    group.bench_function(
+        format!("{}-{}", allocator, BURST_STR),
+        |b| {
+            b.iter(|| burstsort(&mut text.clone(), &ASCII_CONFIG));
+        },
+    );
+
+    group.bench_function(
+        format!("{}-{}", allocator, LONG_BURST_STR),
+        |b| {
+            b.iter(|| burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
+        },
+    );
+
+    group.bench_function(
+        format!("{}-{}", allocator, STD_UNSTABLE_STR),
+        |b| {
+            b.iter(|| text.clone().sort_unstable());
+        },
+    );
+
+    group.bench_function(
+        format!("{}-{}", allocator, STD_STABLE_STR),
+        |b| {
+            b.iter(|| text.clone().sort());
+        },
+    );
+
+    group.bench_function(
+        format!("{}-{}", allocator, RAYON_STABLE_STR),
+        |b| {
+            b.iter(|| text.clone().par_sort());
+        },
+    );
+
+    group.bench_function(
+        format!("{}-{}", allocator, RAYON_UNSTABLE_STR),
+        |b| {
+            b.iter(|| text.clone().par_sort_unstable());
+        },
+    );
+}
 
 pub fn read_file(file: &str, printing: bool) -> Vec<String> {
     let timer = Instant::now();

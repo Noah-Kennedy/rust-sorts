@@ -3,16 +3,19 @@ use criterion::Criterion;
 
 use burstsort::benching::{bench_english, bench_random_count, bench_random_length};
 
+#[global_allocator]
+static GLOBAL: jemallocator::Jemalloc = jemallocator::Jemalloc;
+
 fn english(c: &mut Criterion) {
-    bench_english(c, "system")
+    bench_english(c, "jemalloc")
 }
 
 fn random_count(c: &mut Criterion) {
-    bench_random_count(c, "system")
+    bench_random_count(c, "jemalloc")
 }
 
 fn random_length(c: &mut Criterion) {
-    bench_random_length(c, "system");
+    bench_random_length(c, "jemalloc");
 }
 
 criterion_group!(
