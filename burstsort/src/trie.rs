@@ -45,13 +45,13 @@ impl<C, T, I> TrieNode<C, T, I>
     }
 
     pub fn insert(&mut self, item: T) {
+        let cap = self.config.borrow().initial_capacity;
+
         if let Some(radix) = item.as_ref().get(self.level).cloned() {
             let radix = radix.into();
 
             match &mut self.inner {
                 TrieNodeKind::List(list) => {
-                    let cap = self.config.borrow().initial_capacity;
-
                     // pre-allocate if this is a "fresh" list node
                     if cap > 0 && list.is_empty() {
                         list.reserve(cap);
@@ -65,7 +65,7 @@ impl<C, T, I> TrieNode<C, T, I>
                             Self {
                                 level: self.level + 1,
                                 config: self.config.clone(),
-                                matches: Vec::with_capacity(cap),
+                                matches: Vec::new(),
                                 inner: TrieNodeKind::List(Vec::new()),
                                 _phantom: PhantomData::default(),
                             };
@@ -84,6 +84,11 @@ impl<C, T, I> TrieNode<C, T, I>
                 }
             }
         } else {
+            // pre-allocate if this is a "fresh" matches list
+            if cap > 0 && self.matches.is_empty() {
+                self.matches.reserve(cap);
+            }
+
             self.matches.push(item)
         }
     }
