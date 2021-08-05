@@ -1,5 +1,7 @@
 use std::borrow::Borrow;
 use std::marker::PhantomData;
+
+#[cfg(feature = "parallelization")]
 use rayon::prelude::ParallelSliceMut;
 
 /// Tuning configuration for burstsort.
@@ -144,7 +146,7 @@ impl<C, T, I> TrieNode<C, T, I>
             }
             TrieNodeKind::Burst(table) => {
                 for x in table.iter_mut() {
-                    x.merge(target)
+                    x.merge_sorted(target)
                 }
             }
         }
@@ -156,22 +158,26 @@ impl<C, T, I> TrieNode<C, T, I>
         let level = self.level;
         match &mut self.inner {
             TrieNodeKind::List(list) => {
-                scope.spawn(move |_| {
-                    if long {
-                        list.par_sort_unstable_by(|lhs, rhs| {
-                            let lhs_remaining = &lhs.as_ref()[level..];
-                            let rhs_remaining = &rhs.as_ref()[level..];
-                            lhs_remaining.cmp(rhs_remaining)
-                        });
-                    } else {
-                        list.par_sort_unstable();
-                    }
-                })
+                if !list.is_empty() {
+                    scope.spawn(move |_| {
+                        if long {
+                            list.par_sort_unstable_by(|lhs, rhs| {
+                                let lhs_remaining = &lhs.as_ref()[level..];
+                                let rhs_remaining = &rhs.as_ref()[level..];
+                                lhs_remaining.cmp(rhs_remaining)
+                            });
+                        } else {
+                            list.par_sort_unstable();
+                        }
+                    })
+                }
             }
             TrieNodeKind::Burst(table) => {
-                for x in table.iter_mut() {
-                    x.par_sort(scope);
-                }
+                scope.spawn(move |s| {
+                    for x in table.iter_mut() {
+                        x.par_sort(s);
+                    }
+                });
             }
         }
     }
