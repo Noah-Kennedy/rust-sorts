@@ -33,7 +33,6 @@ fn initial_capacity(c: &mut Criterion) {
     let mut group = c.benchmark_group("tune-init-cap");
 
     let capacities = [0, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096];
-    // let capacities = [4096, 1024, 64, 32, 0];
 
     let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
 

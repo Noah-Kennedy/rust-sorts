@@ -20,13 +20,15 @@ const RAYON_UNSTABLE_STR: &str = "rayon-par-unstable";
 
 pub fn bench_english(c: &mut Criterion, allocator: &str) {
     let text = read_file_alpha("data/eng_news_2020_1M/eng_news_2020_1M-sentences.txt", false);
-    bench_with_text(c, "compare-alphabetical-english", allocator, text);
+    bench_with_text(c, "compare-encoding-ascii-alpha", allocator, text);
 }
 
 pub fn bench_random_count(c: &mut Criterion, allocator: &str) {
     const STEP_SIZE: usize = 25_000;
 
-    let mut group = c.benchmark_group("compare-random-by-count");
+    let name = format!("{}-compare-random-by-count", allocator);
+
+    let mut group = c.benchmark_group(name);
 
     for x in (STEP_SIZE..=2_000_000).step_by(STEP_SIZE) {
         let text = get_random_str(x, 1, 16);
@@ -71,7 +73,8 @@ pub fn bench_random_count(c: &mut Criterion, allocator: &str) {
 }
 
 pub fn bench_random_length(c: &mut Criterion, allocator: &str) {
-    let mut group = c.benchmark_group("compare-random-by-length");
+    let name = format!("{}-compare-random-by-length", allocator);
+    let mut group = c.benchmark_group(name);
 
     for x in [1, 2, 4, 8, 16, 32, 64, 128, 256] {
         let text = get_random_str(LENGTH, 0, x);
@@ -123,9 +126,11 @@ pub fn bench_random_length(c: &mut Criterion, allocator: &str) {
 }
 
 fn bench_with_text(c: &mut Criterion, param: &str, allocator: &str, text: Vec<String>) {
-    println!("{}:\n\t{}", param, text.len());
+    let name = format!("{}-{}", allocator, param);
 
-    let mut group = c.benchmark_group(param);
+    println!("{}:\n\t{}", &name, text.len());
+
+    let mut group = c.benchmark_group(name);
 
     group.sample_size(128);
     group.warm_up_time(Duration::from_secs(20));

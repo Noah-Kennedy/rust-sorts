@@ -17,7 +17,7 @@ mod tests;
 
 pub const ASCII_CONFIG: BurstConfig = BurstConfig {
     burst_limit: 16384,
-    initial_capacity: 0,
+    initial_capacity: 256,
     classes: 127,
     hint_long: false,
 };
