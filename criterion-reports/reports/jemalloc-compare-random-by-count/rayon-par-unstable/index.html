@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>jemalloc-compare-random-by-count/rayon-par-unstable Summary - Criterion.rs</title>
+    <style type="text/css">body {
+    font: 14px Helvetica Neue;
+    text-rendering: optimizelegibility;
+}
+
+.body {
+    width: 960px;
+    margin: auto;
+}
+
+a:link {
+    color: #1F78B4;
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 36px;
+    font-weight: 300;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+#footer {
+    height: 40px;
+    background: #888;
+    color: white;
+    font-size: larger;
+    font-weight: 300;
+}
+
+#footer a {
+    color: white;
+    text-decoration: underline;
+}
+
+#footer p {
+    text-align: center
+}
+    </style>
+</head>
+
+<body>
+    <div class="body">
+        <h2>jemalloc-compare-random-by-count/rayon-par-unstable</h2>
+        <h3>Violin Plot</h3>
+        <a href="violin.svg">
+            <img src="violin.svg" alt="Violin Plot" />
+        </a>
+        <p>This chart shows the relationship between function/parameter and iteration time. The thickness of the shaded
+            region indicates the probability that a measurement of the given function/parameter would take a particular
+            length of time.</p>
+        <h3>Line Chart</h3>
+        <img src="lines.svg" alt="Line Chart" />
+        <p>This chart shows the mean measured time for each function as the input (or the size of the input) increases.</p>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/25000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/25000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/25000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/25000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/25000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/25000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/50000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/50000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/50000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/50000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/50000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/50000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/75000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/75000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/75000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/75000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/75000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/75000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/100000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/100000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/100000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/100000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/100000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/100000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/125000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/125000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/125000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/125000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/125000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/125000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/150000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/150000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/150000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/150000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/150000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/150000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/175000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/175000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/175000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/175000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/175000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/175000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/200000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/200000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/200000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/200000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/200000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/200000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/225000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/225000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/225000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/225000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/225000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/225000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/250000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/250000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/250000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/250000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/250000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/250000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/275000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/275000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/275000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/275000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/275000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/275000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/300000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/300000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/300000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/300000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/300000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/300000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/325000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/325000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/325000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/325000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/325000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/325000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/350000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/350000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/350000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/350000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/350000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/350000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/375000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/375000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/375000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/375000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/375000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/375000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/400000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/400000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/400000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/400000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/400000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/400000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/425000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/425000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/425000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/425000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/425000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/425000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/450000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/450000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/450000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/450000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/450000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/450000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/475000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/475000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/475000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/475000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/475000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/475000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/500000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/500000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/500000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/500000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/500000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/500000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/525000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/525000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/525000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/525000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/525000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/525000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/550000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/550000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/550000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/550000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/550000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/550000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/575000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/575000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/575000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/575000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/575000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/575000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/600000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/600000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/600000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/600000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/600000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/600000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/625000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/625000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/625000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/625000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/625000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/625000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/650000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/650000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/650000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/650000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/650000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/650000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/675000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/675000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/675000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/675000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/675000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/675000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/700000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/700000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/700000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/700000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/700000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/700000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/725000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/725000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/725000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/725000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/725000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/725000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/750000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/750000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/750000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/750000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/750000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/750000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/775000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/775000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/775000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/775000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/775000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/775000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/800000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/800000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/800000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/800000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/800000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/800000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/825000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/825000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/825000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/825000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/825000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/825000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/850000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/850000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/850000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/850000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/850000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/850000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/875000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/875000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/875000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/875000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/875000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/875000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/900000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/900000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/900000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/900000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/900000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/900000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/925000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/925000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/925000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/925000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/925000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/925000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/950000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/950000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/950000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/950000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/950000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/950000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/975000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/975000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/975000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/975000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/975000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/975000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1000000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1000000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1000000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1000000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1000000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1000000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1025000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1025000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1025000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1025000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1025000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1025000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1050000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1050000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1050000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1050000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1050000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1050000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1075000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1075000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1075000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1075000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1075000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1075000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1100000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1100000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1100000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1100000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1100000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1100000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1125000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1125000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1125000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1125000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1125000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1125000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1150000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1150000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1150000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1150000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1150000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1150000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1175000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1175000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1175000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1175000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1175000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1175000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1200000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1200000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1200000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1200000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1200000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1200000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1225000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1225000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1225000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1225000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1225000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1225000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1250000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1250000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1250000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1250000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1250000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1250000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1275000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1275000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1275000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1275000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1275000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1275000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1300000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1300000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1300000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1300000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1300000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1300000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1325000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1325000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1325000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1325000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1325000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1325000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1350000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1350000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1350000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1350000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1350000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1350000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1375000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1375000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1375000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1375000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1375000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1375000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1400000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1400000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1400000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1400000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1400000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1400000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1425000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1425000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1425000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1425000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1425000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1425000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1450000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1450000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1450000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1450000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1450000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1450000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1475000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1475000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1475000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1475000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1475000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1475000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1500000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1500000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1500000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1500000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1500000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1500000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1525000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1525000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1525000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1525000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1525000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1525000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1550000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1550000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1550000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1550000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1550000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1550000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1575000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1575000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1575000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1575000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1575000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1575000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1600000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1600000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1600000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1600000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1600000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1600000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1625000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1625000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1625000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1625000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1625000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1625000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1650000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1650000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1650000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1650000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1650000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1650000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1675000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1675000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1675000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1675000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1675000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1675000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1700000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1700000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1700000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1700000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1700000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1700000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1725000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1725000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1725000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1725000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1725000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1725000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1750000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1750000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1750000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1750000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1750000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1750000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1775000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1775000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1775000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1775000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1775000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1775000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1800000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1800000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1800000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1800000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1800000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1800000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1825000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1825000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1825000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1825000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1825000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1825000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1850000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1850000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1850000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1850000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1850000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1850000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1875000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1875000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1875000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1875000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1875000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1875000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1900000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1900000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1900000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1900000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1900000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1900000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1925000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1925000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1925000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1925000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1925000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1925000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1950000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1950000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1950000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1950000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1950000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1950000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1975000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/1975000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1975000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1975000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/1975000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/1975000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="plots">
+            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/2000000/index.html">
+                <h4>jemalloc-compare-random-by-count/rayon-par-unstable/2000000</h4>
+            </a>
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/2000000/pdf.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/2000000/pdf_small.svg" alt="PDF of Slope" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                        <td>
+                            <a href="../../jemalloc-compare-random-by-count/rayon-par-unstable/2000000/iteration_times.svg">
+                                <img src="../../jemalloc-compare-random-by-count/rayon-par-unstable/2000000/iteration_times_small.svg" alt="Iteration Times" width="450"
+                                    height="300" />
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div id="footer">
+        <p>This report was generated by <a href="https://github.com/bheisler/cargo-criterion">cargo-criterion</a></p>
+    </div>
+</body>
+
+</html>
