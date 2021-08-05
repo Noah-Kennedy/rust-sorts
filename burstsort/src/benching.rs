@@ -5,11 +5,13 @@ use rand::distributions::{Alphanumeric, Distribution, Uniform};
 use rand::distributions::uniform::SampleUniform;
 use unicode_segmentation::UnicodeSegmentation;
 
-use crate::{ASCII_CONFIG, burstsort, LONG_ASCII_CONFIG};
+use crate::{ASCII_CONFIG, burstsort, LONG_ASCII_CONFIG, par_burstsort};
 use rayon::prelude::ParallelSliceMut;
 
 const LENGTH: usize = 2_000_000;
 
+const PAR_BURST_STR: &str = "par-burstsort";
+const PAR_LONG_BURST_STR: &str = "par-burstsort-long";
 const BURST_STR: &str = "burstsort";
 const LONG_BURST_STR: &str = "burstsort-long";
 const STD_STABLE_STR: &str = "std-stable";
@@ -36,35 +38,42 @@ pub fn bench_random_count(c: &mut Criterion, allocator: &str) {
         group.throughput(Throughput::Elements(x as u64));
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, BURST_STR), x),
+            BenchmarkId::new(PAR_BURST_STR, x),
+            |b| {
+                b.iter(|| par_burstsort(&mut text.clone(), &ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(BURST_STR, x),
             |b| {
                 b.iter(|| burstsort(&mut text.clone(), &ASCII_CONFIG));
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, STD_UNSTABLE_STR), x),
+            BenchmarkId::new(STD_UNSTABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().sort_unstable());
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, STD_STABLE_STR), x),
+            BenchmarkId::new(STD_STABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().sort());
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, RAYON_STABLE_STR), x),
+            BenchmarkId::new(RAYON_STABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().par_sort());
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, RAYON_UNSTABLE_STR), x),
+            BenchmarkId::new(RAYON_UNSTABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().par_sort_unstable());
             },
@@ -82,42 +91,56 @@ pub fn bench_random_length(c: &mut Criterion, allocator: &str) {
         group.throughput(Throughput::Elements(x as u64 / 2));
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, BURST_STR), x),
+            BenchmarkId::new(PAR_BURST_STR, x),
+            |b| {
+                b.iter(|| par_burstsort(&mut text.clone(), &ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(PAR_LONG_BURST_STR, x),
+            |b| {
+                b.iter(|| par_burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
+            },
+        );
+
+        group.bench_function(
+            BenchmarkId::new(BURST_STR, x),
             |b| {
                 b.iter(|| burstsort(&mut text.clone(), &ASCII_CONFIG));
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, LONG_BURST_STR), x),
+            BenchmarkId::new(LONG_BURST_STR, x),
             |b| {
                 b.iter(|| burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, STD_UNSTABLE_STR), x),
+            BenchmarkId::new(STD_UNSTABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().sort_unstable());
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, STD_STABLE_STR), x),
+            BenchmarkId::new(STD_STABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().sort());
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, RAYON_STABLE_STR), x),
+            BenchmarkId::new(RAYON_STABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().par_sort());
             },
         );
 
         group.bench_function(
-            BenchmarkId::new(format!("{}-{}", allocator, RAYON_UNSTABLE_STR), x),
+            BenchmarkId::new(RAYON_UNSTABLE_STR, x),
             |b| {
                 b.iter(|| text.clone().par_sort_unstable());
             },
@@ -136,42 +159,56 @@ fn bench_with_text(c: &mut Criterion, param: &str, allocator: &str, text: Vec<St
     group.warm_up_time(Duration::from_secs(20));
 
     group.bench_function(
-        format!("{}-{}", allocator, BURST_STR),
+        PAR_BURST_STR,
+        |b| {
+            b.iter(|| par_burstsort(&mut text.clone(), &ASCII_CONFIG));
+        },
+    );
+
+    group.bench_function(
+        PAR_LONG_BURST_STR,
+        |b| {
+            b.iter(|| par_burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
+        },
+    );
+
+    group.bench_function(
+        BURST_STR,
         |b| {
             b.iter(|| burstsort(&mut text.clone(), &ASCII_CONFIG));
         },
     );
 
     group.bench_function(
-        format!("{}-{}", allocator, LONG_BURST_STR),
+        LONG_BURST_STR,
         |b| {
             b.iter(|| burstsort(&mut text.clone(), &LONG_ASCII_CONFIG));
         },
     );
 
     group.bench_function(
-        format!("{}-{}", allocator, STD_UNSTABLE_STR),
+        STD_UNSTABLE_STR,
         |b| {
             b.iter(|| text.clone().sort_unstable());
         },
     );
 
     group.bench_function(
-        format!("{}-{}", allocator, STD_STABLE_STR),
+        STD_STABLE_STR,
         |b| {
             b.iter(|| text.clone().sort());
         },
     );
 
     group.bench_function(
-        format!("{}-{}", allocator, RAYON_STABLE_STR),
+        RAYON_STABLE_STR,
         |b| {
             b.iter(|| text.clone().par_sort());
         },
     );
 
     group.bench_function(
-        format!("{}-{}", allocator, RAYON_UNSTABLE_STR),
+        RAYON_UNSTABLE_STR,
         |b| {
             b.iter(|| text.clone().par_sort_unstable());
         },

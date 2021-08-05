@@ -1,5 +1,6 @@
 use std::borrow::Borrow;
 use std::marker::PhantomData;
+use rayon::prelude::ParallelSliceMut;
 
 /// Tuning configuration for burstsort.
 pub struct BurstConfig {
@@ -10,7 +11,6 @@ pub struct BurstConfig {
     /// Number of radix buckets.
     pub classes: usize,
     /// Hints to the algorithm that items may be long.
-    /// Of all the config parameters, this is the one you should look at tuning.
     pub hint_long: bool,
 }
 
@@ -30,9 +30,9 @@ pub enum TrieNodeKind<C, T, I> {
 }
 
 impl<C, T, I> TrieNode<C, T, I>
-    where C: Borrow<BurstConfig> + Clone,
-          T: PartialEq + AsRef<[I]> + Clone + Ord,
-          I: Into<usize> + Clone + Ord
+    where C: Borrow<BurstConfig> + Clone + Send + Sync,
+          T: PartialEq + AsRef<[I]> + Clone + Ord + Send + Sync,
+          I: Into<usize> + Clone + Ord + Send + Sync
 {
     pub fn root(config: C) -> Self {
         Self {
@@ -120,6 +120,57 @@ impl<C, T, I> TrieNode<C, T, I>
                 // sequentially merge each table entry
                 for x in table.iter_mut() {
                     x.merge(target)
+                }
+            }
+        }
+    }
+
+    #[cfg(feature = "parallelization")]
+    pub fn par_merge(&mut self, target: &mut Vec<T>) {
+        rayon::scope(|s| {
+            self.par_sort(s);
+        });
+
+        self.merge_sorted(target);
+    }
+
+    #[cfg(feature = "parallelization")]
+    fn merge_sorted(&mut self, target: &mut Vec<T>) {
+        target.append(&mut self.matches);
+
+        match &mut self.inner {
+            TrieNodeKind::List(list) => {
+                target.append(list);
+            }
+            TrieNodeKind::Burst(table) => {
+                for x in table.iter_mut() {
+                    x.merge(target)
+                }
+            }
+        }
+    }
+
+    #[cfg(feature = "parallelization")]
+    fn par_sort<'scope>(&'scope mut self, scope: &rayon::Scope<'scope>) {
+        let long = self.config.borrow().hint_long;
+        let level = self.level;
+        match &mut self.inner {
+            TrieNodeKind::List(list) => {
+                scope.spawn(move |_| {
+                    if long {
+                        list.par_sort_unstable_by(|lhs, rhs| {
+                            let lhs_remaining = &lhs.as_ref()[level..];
+                            let rhs_remaining = &rhs.as_ref()[level..];
+                            lhs_remaining.cmp(rhs_remaining)
+                        });
+                    } else {
+                        list.par_sort_unstable();
+                    }
+                })
+            }
+            TrieNodeKind::Burst(table) => {
+                for x in table.iter_mut() {
+                    x.par_sort(scope);
                 }
             }
         }

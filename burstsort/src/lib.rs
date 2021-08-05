@@ -69,9 +69,9 @@ pub const LONG_UTF8_CONFIG: BurstConfig = BurstConfig {
 /// assert_eq!(sorted_strings, strings);
 /// ```
 pub fn burstsort<T, C, I>(data: &mut Vec<T>, config: C)
-    where T: PartialEq + AsRef<[I]> + Clone + Ord,
-          C: Borrow<BurstConfig> + Clone,
-          I: Into<usize> + Clone + Ord
+    where T: PartialEq + AsRef<[I]> + Clone + Ord + Send + Sync,
+          C: Borrow<BurstConfig> + Clone + Send + Sync,
+          I: Into<usize> + Clone + Ord + Send + Sync
 {
     let mut root = TrieNode::root(config);
 
@@ -80,4 +80,19 @@ pub fn burstsort<T, C, I>(data: &mut Vec<T>, config: C)
     }
 
     root.merge(data);
+}
+
+#[cfg(feature = "parallelization")]
+pub fn par_burstsort<T, C, I>(data: &mut Vec<T>, config: C)
+    where T: PartialEq + AsRef<[I]> + Clone + Ord + Send + Sync,
+          C: Borrow<BurstConfig> + Clone + Send + Sync,
+          I: Into<usize> + Clone + Ord + Send + Sync
+{
+    let mut root = TrieNode::root(config);
+
+    for x in data.drain(..) {
+        root.insert(x);
+    }
+
+    root.par_merge(data);
 }
