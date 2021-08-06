@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2018"
 
 [features]
-_benchmarking = ["unicode-segmentation", "rand", "criterion", "rayon"]
+_benchmarking = ["unicode-segmentation", "rand", "criterion", "rayon", "parallelization"]
 parallelization = ["rayon"]
 
 ###################################################################################################
@@ -63,5 +63,5 @@ harness = false
 
 [[bench]]
 name = "burstsort-tuning"
-required-features = ["_benchmarking", "tcmalloc"]
+required-features = ["_benchmarking", "jemallocator"]
 harness = false
